@@ -1,0 +1,2 @@
+# PorThunderbirdUpd
+ Portable Thunderbird Updater
