@@ -21,7 +21,6 @@ namespace Thunderbird_Updater
         public static string[] ring2 = new string[4] { "Beta", "Stable", "Beta", "Stable" };
         public static string[] architektur = new string[2] { "x86", "x64" };
         public static string[] buildversion = new string[4];
-        public static string[] tooltipps = new string[10];
         readonly ToolTip toolTip = new ToolTip();
         WebClient myWebClient = new WebClient();
         readonly CultureInfo culture1 = CultureInfo.CurrentUICulture;
@@ -78,7 +77,19 @@ namespace Thunderbird_Updater
                     checkBox3.Checked = true;
                     CheckButton();
                 }
-                else if (File.Exists(@"Thunderbird\Thunderbird.exe"))
+                else if (checkBox3.Checked)
+                {
+                    checkBox1.Enabled = false;
+                    checkBox2.Enabled = false;
+                    button11.Enabled = false;
+                    button11.BackColor = Color.FromArgb(244, 244, 244);
+
+                    if (File.Exists(@"Thunderbird\Thunderbird.exe"))
+                    {
+                        CheckButton2();
+                    }
+                }
+                if (File.Exists(@"Thunderbird\Thunderbird.exe"))
                 {
                     CheckButton2();
                 }
@@ -91,9 +102,16 @@ namespace Thunderbird_Updater
                     checkBox1.Enabled = false;
                     CheckButton();
                 }
-                else if (File.Exists(@"Thunderbird\Thunderbird.exe"))
+                else if (checkBox3.Checked)
                 {
-                    CheckButton2();
+                    checkBox1.Enabled = false;
+                    button11.Enabled = false;
+                    button11.BackColor = Color.FromArgb(244, 244, 244);
+
+                    if (File.Exists(@"Thunderbird\Thunderbird.exe"))
+                    {
+                        CheckButton2();
+                    }
                 }
             }
         }
@@ -101,7 +119,6 @@ namespace Thunderbird_Updater
         {
             comboIndex = comboBox1.SelectedIndex;
         }
-
         private void Button1_Click(object sender, EventArgs e)
         {
             if (checkBox3.Checked)
