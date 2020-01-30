@@ -29,7 +29,7 @@ namespace Thunderbird_Beta_x86_Launcher
         }
         private void RadioButton1_CheckedChanged(object sender, System.EventArgs e)
         {
-            MessageBox.Show("Warnung\n\nDiese Option ist nicht Empfohlen\n\nDie Commandline Option \"-allow-downgrade\" wird angefügt\n\nDer Herabstufungsschutz von Thunderbird verhindert das versehentliche Starten von Firefox in einem Profil, in dem eine spätere Version von Thunderbird läuft. Je nach den Änderungen zwischen den beiden Versionen sind einige Dateien in einem Profil möglicherweise nicht abwärtskompatibel. Durch das Hinzufügen dieser Option wird der Herabstufungsschutz umgangen.", "Thunderbird Launcher", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show("Warnung\n\nDiese Option ist nicht Empfohlen\n\nDie Commandline Option \"-allow-downgrade\" wird angefügt\n\nDer Herabstufungsschutz von Thunderbird verhindert das versehentliche Starten von Thunderbird in einem Profil, in dem eine spätere Version von Thunderbird läuft. Je nach den Änderungen zwischen den beiden Versionen sind einige Dateien in einem Profil möglicherweise nicht abwärtskompatibel. Durch das Hinzufügen dieser Option wird der Herabstufungsschutz umgangen.", "Thunderbird Launcher", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
     }
 }
