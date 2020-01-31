@@ -28,7 +28,7 @@ namespace Thunderbird_Stable_x64_Launcher
                 this.Close();
             }
         }
-        private void RadioButton1_CheckedChanged(object sender, System.EventArgs e)
+        private void RadioButton1_MouseClick(object sender, MouseEventArgs e)
         {
             MessageBox.Show("Warning\n\nThis option is not recommended\n\nThe commandline option \"-allow-downgrade\" will be added.\n\nThunderbird downgrade protection prevents accidentally starting Thunderbird in a profile running a later version of Thunderbird. Depending on changes between the two versions, some files in a profile may not be downwards compatible. Adding this option bypasses downgrade protection.", "Thunderbird Launcher", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
