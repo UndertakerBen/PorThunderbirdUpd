@@ -6,7 +6,9 @@ using System.IO;
 using System.Net;
 using System.Windows.Forms;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Globalization;
+using System.Collections.Generic;
 
 namespace Thunderbird_Updater
 {
@@ -64,230 +66,178 @@ namespace Thunderbird_Updater
             }
             if (IntPtr.Size == 8)
             {
-                if (File.Exists(@"Thunderbird Beta x64\Thunderbird.exe") || File.Exists(@"Thunderbird Stable x64\Thunderbird.exe"))
+                if (File.Exists(@"Thunderbird Beta x64\thunderbird.exe") || File.Exists(@"Thunderbird Stable x64\thunderbird.exe"))
                 {
                     checkBox2.Enabled = false;
                 }
-                if (File.Exists(@"Thunderbird Beta x86\Thunderbird.exe") || File.Exists(@"Thunderbird Stable x86\Thunderbird.exe"))
+                if (File.Exists(@"Thunderbird Beta x86\thunderbird.exe") || File.Exists(@"Thunderbird Stable x86\thunderbird.exe"))
                 {
                     checkBox1.Enabled = false;
                 }
-                if (File.Exists(@"Thunderbird Beta x86\Thunderbird.exe") || File.Exists(@"Thunderbird Stable x86\Thunderbird.exe") || File.Exists(@"Thunderbird Beta x64\Thunderbird.exe") || File.Exists(@"Thunderbird Stable x64\Thunderbird.exe"))
+                if (File.Exists(@"Thunderbird Beta x86\thunderbird.exe") || File.Exists(@"Thunderbird Stable x86\thunderbird.exe") || File.Exists(@"Thunderbird Beta x64\thunderbird.exe") || File.Exists(@"Thunderbird Stable x64\thunderbird.exe"))
                 {
                     checkBox3.Checked = true;
                     CheckButton();
                 }
-                else if (checkBox3.Checked)
+                else if (!checkBox3.Checked)
                 {
                     checkBox1.Enabled = false;
                     checkBox2.Enabled = false;
                     button11.Enabled = false;
                     button11.BackColor = Color.FromArgb(244, 244, 244);
 
-                    if (File.Exists(@"Thunderbird\Thunderbird.exe"))
+                    if (File.Exists(@"Thunderbird\thunderbird.exe"))
                     {
                         CheckButton2();
                     }
-                }
-                if (File.Exists(@"Thunderbird\Thunderbird.exe"))
-                {
-                    CheckButton2();
                 }
             }
             else if (IntPtr.Size != 8)
             {
-                if (File.Exists(@"Thunderbird Beta x86\Thunderbird.exe") || File.Exists(@"Thunderbird Stable x86\Thunderbird.exe"))
+                if (File.Exists(@"Thunderbird Beta x86\thunderbird.exe") || File.Exists(@"Thunderbird Stable x86\thunderbird.exe"))
                 {
                     checkBox3.Checked = true;
                     checkBox1.Enabled = false;
                     CheckButton();
                 }
-                else if (checkBox3.Checked)
+                else if (!checkBox3.Checked)
                 {
                     checkBox1.Enabled = false;
                     button11.Enabled = false;
                     button11.BackColor = Color.FromArgb(244, 244, 244);
 
-                    if (File.Exists(@"Thunderbird\Thunderbird.exe"))
+                    if (File.Exists(@"Thunderbird\thunderbird.exe"))
                     {
                         CheckButton2();
                     }
                 }
             }
+            CheckUpdate();
         }
         private void ComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboIndex = comboBox1.SelectedIndex;
         }
-        private void Button1_Click(object sender, EventArgs e)
+        private async void Button1_Click(object sender, EventArgs e)
         {
             if (checkBox3.Checked)
             {
-                NewMethod(0, 0, 0, 1, 12, 13, 1);
+                await NewMethod(0, 0, 0, 1);
             }
             else if (!checkBox3.Checked)
             {
-                NewMethod1(0, 4, 0, 1, 12, 13, 1);
+                await NewMethod1(0, 4, 0, 1);
             }
         }
-        private void Button2_Click(object sender, EventArgs e)
+        private async void Button2_Click(object sender, EventArgs e)
         {
             if (checkBox3.Checked)
             {
-                NewMethod(0, 1, 1, 2, 14, 15, 2);
+                await NewMethod(0, 1, 1, 2);
             }
             else if (!checkBox3.Checked)
             {
-                NewMethod1(0, 4, 1, 1, 12, 13, 2);
+                await NewMethod1(0, 4, 1, 2);
             }
         }
-        private void Button3_Click(object sender, EventArgs e)
+        private async void Button3_Click(object sender, EventArgs e)
         {
             if (checkBox3.Checked)
             {
-                NewMethod(1, 2, 2, 6, 23, 22, 3);
+                await NewMethod(1, 2, 2, 3);
             }
             else if (!checkBox3.Checked)
             {
-                NewMethod1(1, 4, 2, 1, 12, 13, 3);
+                await NewMethod1(1, 4, 2, 3);
             }
         }
-        private void Button4_Click(object sender, EventArgs e)
+        private async void Button4_Click(object sender, EventArgs e)
         {
             if (checkBox3.Checked)
             {
-                NewMethod(1, 3, 3, 7, 25, 24, 4);
+                await NewMethod(1, 3, 3, 4);
             }
             else if (!checkBox3.Checked)
             {
-                NewMethod1(1, 4, 3, 1, 12, 13, 4);
+                await NewMethod1(1, 4, 3, 4);
             }
         }
-        private void Button11_Click(object sender, EventArgs e)
+        private async void Button11_Click(object sender, EventArgs e)
+        {
+            await Testing();
+        }
+        private async Task Testing()
         {
             if ((!Directory.Exists(@"Thunderbird Beta x86")) && (!Directory.Exists(@"Thunderbird Stable x86")))
             {
                 if (checkBox1.Checked)
                 {
-                    DownloadFile(0, 0, 0, 1, 12, 13, 1);
-                    DownloadFile(0, 1, 1, 2, 14, 15, 2);
+                    await DownloadFile(0, 0, 0, 1);
+                    await DownloadFile(0, 1, 1, 2);
+                    checkBox1.Checked = false;
+                    checkBox1.Enabled = false;
                 }
             }
-            NewMethod2(0, 0, 0, 1, 12, 13, 1);
-            NewMethod2(0, 1, 1, 2, 14, 15, 2);
+            await NewMethod2(0, 0, 0, 1);
+            await NewMethod2(0, 1, 1, 2);
             if (IntPtr.Size == 8)
             {
                 if ((!Directory.Exists(@"Thunderbird Beta x64")) && (!Directory.Exists(@"Thunderbird Stable x64")))
                 {
                     if (checkBox2.Checked)
                     {
-                        DownloadFile(1, 2, 2, 6, 23, 22, 3);
-                        DownloadFile(1, 3, 3, 7, 25, 24, 4);
+                        await DownloadFile(1, 2, 2, 3);
+                        await DownloadFile(1, 3, 3, 4);
+                        checkBox2.Checked = false;
+                        checkBox2.Enabled = false;
                     }
                 }
-                NewMethod2(1, 2, 2, 6, 23, 22, 3);
-                NewMethod2(1, 3, 3, 7, 25, 24, 4);
+                await NewMethod2(1, 2, 2, 3);
+                await NewMethod2(1, 3, 3, 4);
             }
         }
-        private void ProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        public async Task DownloadFile(int a, int b, int c, int d)
         {
-            string[] i = e.UserState.ToString().Split(new char[] { '|' });
-            Control[] progressBars = Controls.Find("progressBar" + i[3], true);
-            Control[] buttons = Controls.Find("button" + i[6], true);
-            Control[] label1 = Controls.Find("label" + i[4], true);
-            Control[] label2 = Controls.Find("label" + i[5], true);
-            if (buttons.Length > 0)
+            GroupBox progressBox = new GroupBox
             {
-                Button button = (Button)buttons[0];
-                button.BackColor = Color.Orange;
-            }
-            if (progressBars.Length > 0)
+                Location = new Point(10, button12.Location.Y + button12.Height + 5),
+                Size = new Size(groupBox3.Width, 90),
+                BackColor = Color.Lavender,
+            };
+            Label title = new Label
             {
-                ProgressBar progressBar = (ProgressBar)progressBars[0];
-                progressBar.Visible = true;
-                progressBar.Value = e.ProgressPercentage;
-            }
-            if (label1.Length > 0)
+                AutoSize = false,
+                Location = new Point(2, 10),
+                Size = new Size(progressBox.Width - 4, 25),
+                Text = "Thunderbird " + ring2[c] + " " + buildversion[c] + " " + architektur[a],
+                TextAlign = ContentAlignment.BottomCenter
+            };
+            title.Font = new Font(title.Font.Name, 9.25F, FontStyle.Bold);
+            Label downloadLabel = new Label
             {
-                Label label = (Label)label1[0];
-                label.Visible = true;
-                label.Text = string.Format("{0} MB's / {1} MB's",
-                (e.BytesReceived / 1024d / 1024d).ToString("0.00"),
-                (e.TotalBytesToReceive / 1024d / 1024d).ToString("0.00"));
-            }
-            if (label2.Length > 0)
+                AutoSize = false,
+                Location = new Point(5, 35),
+                Size = new Size(200, 25),
+                TextAlign = ContentAlignment.BottomLeft
+            };
+            Label percLabel = new Label
             {
-                Label label3 = (Label)label2[0];
-                label3.Visible = true;
-                label3.Text = e.ProgressPercentage.ToString() + "%";
-            }
-        }
-        private void Completed(object sender, AsyncCompletedEventArgs e)
-        {
-            string[] i = e.UserState.ToString().Split(new char[] { '|' });
-            int b = int.Parse(i[4]);
-            var d = int.Parse(i[1]);
-            int c = int.Parse(i[2]);
-            int a = int.Parse(i[0]);
-            Control[] labels = Controls.Find("label" + b, true);
-            Label label = (Label)labels[0];
-            if (e.Cancelled == true)
+                AutoSize = false,
+                Location = new Point(progressBox.Size.Width - 105, 35),
+                Size = new Size(100, 25),
+                TextAlign = ContentAlignment.BottomRight
+            };
+            ProgressBar progressBarneu = new ProgressBar
             {
-                MessageBox.Show("Download has been canceled.");
-            }
-            else
-            {
-                if (labels.Length > 0)
-                {
-                    label.Text = culture1.Name != "de-DE" ? "Unpacking" : "Entpacken";
-                    string arguments = " x " + i[7] + " -o" + @"Update\" + entpDir[d] + " -y";
-                    Process process = new Process();
-                    process.StartInfo.FileName = @"Bin\7zr.exe";
-                    process.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
-                    process.StartInfo.Arguments = arguments;
-                    process.Start();
-                    process.WaitForExit();
-                    if (File.Exists(instDir[d] + "\\updates\\Version.log"))
-                    {
-                        if (checkBox3.Checked)
-                        {
-                            string[] instVersion = File.ReadAllText(instDir[d] + "\\updates\\Version.log").Split(new char[] { '|' });
-                            if (buildversion[c] != instVersion[0])
-                            {
-                                NewMethod4(d, c, a);
-                            }
-                            else if ((buildversion[c] == instVersion[0]) && (checkBox4.Checked))
-                            {
-                                NewMethod4(d, c, a);
-                            }
-                        }
-                        else if (!checkBox3.Checked)
-                        {
-                            NewMethod4(d, c, a);
-                        }
-                    }
-                    else
-                    {
-                        NewMethod9(d, c, a);
-                    }
-                }
-            }
-            if (checkBox5.Checked)
-            {
-                if (!File.Exists(deskDir + "\\" + instDir[d] + ".lnk"))
-                {
-                    NewMethod5(d);
-                }
-            }
-            if (!File.Exists(@instDir[d] + " Launcher.exe"))
-            {
-                File.Copy(@"Bin\Launcher\" + instDir[d] + " Launcher.exe", @instDir[d] + " Launcher.exe");
-            }
-            File.Delete(i[7]);
-            label.Text = culture1.Name != "de-DE" ? "Unpacked" : "Entpackt";
-        }
-        public void DownloadFile(int a, int b, int c, int d, int e, int f, int g)
-        {
+                Location = new Point(5, 65),
+                Size = new Size(progressBox.Size.Width - 10, 7)
+            };
+            progressBox.Controls.Add(title);
+            progressBox.Controls.Add(downloadLabel);
+            progressBox.Controls.Add(percLabel);
+            progressBox.Controls.Add(progressBarneu);
+            Controls.Add(progressBox);
+            List<Task> list = new List<Task>();
             WebRequest myWebRequest = WebRequest.Create("https://download.mozilla.org/?" + ring[c] + lang[comboIndex]);
             WebResponse myWebResponse = myWebRequest.GetResponse();
             Uri uri = new Uri(myWebResponse.ResponseUri.ToString());
@@ -296,18 +246,87 @@ namespace Thunderbird_Updater
             myWebResponse.Close();
             using (myWebClient = new WebClient())
             {
-                myWebClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
-                myWebClient.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
-                //sw.Start();
+                myWebClient.DownloadProgressChanged += (o, args) =>
+                {
+                    Control[] buttons = Controls.Find("button" + d, true);
+                    if (buttons.Length > 0)
+                    {
+                        Button button = (Button)buttons[0];
+                        button.BackColor = Color.Orange;
+                    }
+                    progressBarneu.Value = args.ProgressPercentage;
+                    downloadLabel.Text = string.Format("{0} MB's / {1} MB's",
+                        (args.BytesReceived / 1024d / 1024d).ToString("0.00"),
+                        (args.TotalBytesToReceive / 1024d / 1024d).ToString("0.00"));
+                    percLabel.Text = args.ProgressPercentage.ToString() + "%";
+                };
+                myWebClient.DownloadFileCompleted += (o, args) =>
+                {
+                    if (args.Cancelled == true)
+                    {
+                        MessageBox.Show("Download has been canceled.");
+                    }
+                    else
+                    {
+                        downloadLabel.Text = culture1.Name != "de-DE" ? "Unpacking" : "Entpacken";
+                        string arguments = " x " + "Thunderbird_" + ring2[c] + "_" + buildversion[c] + "_" + architektur[a] + "_" + lang[comboIndex] + ".exe" + " -o" + @"Update\" + entpDir[b] + " -y";
+                        Process process = new Process();
+                        process.StartInfo.FileName = @"Bin\7zr.exe";
+                        process.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
+                        process.StartInfo.Arguments = arguments;
+                        process.Start();
+                        process.WaitForExit();
+                        if (File.Exists(instDir[b] + "\\updates\\Version.log"))
+                        {
+                            if (checkBox3.Checked)
+                            {
+                                string[] instVersion = File.ReadAllText(instDir[b] + "\\updates\\Version.log").Split(new char[] { '|' });
+                                if (buildversion[c] != instVersion[0])
+                                {
+                                    NewMethod4(a, b, c);
+                                }
+                                else if ((buildversion[c] == instVersion[0]) && (checkBox4.Checked))
+                                {
+                                    NewMethod4(a, b, c);
+                                }
+                            }
+                            else if (!checkBox3.Checked)
+                            {
+                                NewMethod4(a, b, c);
+                            }
+                        }
+                        else
+                        {
+                            NewMethod9(a, b, c);
+                        }
+                    }
+                    if (checkBox5.Checked)
+                    {
+                        if (!File.Exists(deskDir + "\\" + instDir[b] + ".lnk"))
+                        {
+                            NewMethod5(b);
+                        }
+                    }
+                    if (!File.Exists(@instDir[b] + " Launcher.exe"))
+                    {
+                        File.Copy(@"Bin\Launcher\" + instDir[b] + " Launcher.exe", @instDir[b] + " Launcher.exe");
+                    }
+                    File.Delete("Thunderbird_" + ring2[c] + "_" + buildversion[c] + "_" + architektur[a] + "_" + lang[comboIndex] + ".exe");
+                    downloadLabel.Text = culture1.Name != "de-DE" ? "Unpacked" : "Entpackt";
+                };
                 try
                 {
-                    myWebClient.DownloadFileAsync(uri, "Thunderbird_" + ring2[c] + "_" + buildversion[c] + "_" + architektur[a] + "_" + lang[comboIndex] + ".exe", a + "|" + b + "|" + c + "|" + d + "|" + e + "|" + f + "|" + g + "|" + "Thunderbird_" + ring2[c] + "_" + buildversion[c] + "_" + architektur[a] + "_" + lang[comboIndex] + ".exe");
+                    var task = myWebClient.DownloadFileTaskAsync(uri, "Thunderbird_" + ring2[c] + "_" + buildversion[c] + "_" + architektur[a] + "_" + lang[comboIndex] + ".exe");
+                    list.Add(task);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
             }
+            await Task.WhenAll(list);
+            await Task.Delay(2000);
+            Controls.Remove(progressBox);
         }
         public void Message1()
         {
@@ -381,7 +400,7 @@ namespace Thunderbird_Updater
         {
             if (checkBox3.Checked)
             {
-                if ((File.Exists(@"Thunderbird Beta x64\Thunderbird.exe")) || (File.Exists(@"Thunderbird Stable x64\Thunderbird.exe")))
+                if ((File.Exists(@"Thunderbird Beta x64\thunderbird.exe")) || (File.Exists(@"Thunderbird Stable x64\thunderbird.exe")))
                 {
                     checkBox2.Enabled = false;
                 }
@@ -389,7 +408,7 @@ namespace Thunderbird_Updater
                 {
                     checkBox2.Enabled = true;
                 }
-                if ((File.Exists(@"Thunderbird Beta x86\Thunderbird.exe")) || (File.Exists(@"Thunderbird Stable x86\Thunderbird.exe")))
+                if ((File.Exists(@"Thunderbird Beta x86\thunderbird.exe")) || (File.Exists(@"Thunderbird Stable x86\thunderbird.exe")))
                 {
                     checkBox1.Enabled = false;
                 }
@@ -472,7 +491,7 @@ namespace Thunderbird_Updater
                 button11.BackColor = Color.FromArgb(244, 244, 244);
             }
         }
-        private void NewMethod(int a, int b, int c, int d, int e, int f, int g)
+        private async Task NewMethod(int a, int b, int c, int d)
         {
             if (File.Exists(@instDir[b] + "\\updates\\Version.log"))
             {
@@ -481,7 +500,7 @@ namespace Thunderbird_Updater
                 {
                     if (checkBox4.Checked)
                     {
-                        DownloadFile(a, b, c, d, e, f, g);
+                        await DownloadFile(a, b, c, d);
                     }
                     else
                     {
@@ -490,15 +509,15 @@ namespace Thunderbird_Updater
                 }
                 else
                 {
-                    DownloadFile(a, b, c, d, e, f, g);
+                    await DownloadFile(a, b, c, d);
                 }
             }
             else
             {
-                DownloadFile(a, b, c, d, e, f, g);
+                await DownloadFile(a, b, c, d);
             }
         }
-        private void NewMethod1(int a, int b, int c, int d, int e, int f, int g)
+        private async Task NewMethod1(int a, int b, int c, int d)
         {
             if (File.Exists(@"Thunderbird\updates\Version.log"))
             {
@@ -507,7 +526,7 @@ namespace Thunderbird_Updater
                 {
                     if (checkBox4.Checked)
                     {
-                        DownloadFile(a, b, c, d, e, f, g);
+                        await DownloadFile(a, b, c, d);
                     }
                     else
                     {
@@ -516,15 +535,15 @@ namespace Thunderbird_Updater
                 }
                 else
                 {
-                    DownloadFile(a, b, c, d, e, f, g);
+                    await DownloadFile(a, b, c, d);
                 }
             }
             else
             {
-                DownloadFile(a, b, c, d, e, f, g);
+                await DownloadFile(a, b, c, d);
             }
         }
-        private void NewMethod2(int a, int b, int c, int d, int e, int f, int g)
+        private async Task NewMethod2(int a, int b, int c, int d)
         {
             if (Directory.Exists(instDir[b]))
             {
@@ -533,7 +552,7 @@ namespace Thunderbird_Updater
                     string[] instVersion = File.ReadAllText(@instDir[b] + "\\updates\\Version.log").Split(new char[] { '|' });
                     if (instVersion[0] != buildversion[c])
                     {
-                        DownloadFile(a, b, c, d, e, f, g);
+                        await DownloadFile(a, b, c, d);
                     }
                 }
             }
@@ -550,31 +569,31 @@ namespace Thunderbird_Updater
                 }
             }
         }
-        private void NewMethod4(int d, int c, int a)
+        private void NewMethod4(int a, int b, int c)
         {
-            if (Directory.Exists(instDir[d] + "\\updates"))
+            if (Directory.Exists(instDir[b] + "\\updates"))
             {
-                Directory.Move(instDir[d] + "\\Updates", @"Update\" + entpDir[d] + "\\core\\updates");
+                Directory.Move(instDir[b] + "\\Updates", @"Update\" + entpDir[b] + "\\core\\updates");
             }
-            if (Directory.Exists(instDir[d] + "\\profile"))
+            if (Directory.Exists(instDir[b] + "\\profile"))
             {
-                Directory.Move(instDir[d] + "\\profile", @"Update\" + entpDir[d] + "\\core\\profile");
-            }
-            Thread.Sleep(2000);
-            if (Directory.Exists(instDir[d]))
-            {
-                Directory.Delete(instDir[d], true);
+                Directory.Move(instDir[b] + "\\profile", @"Update\" + entpDir[b] + "\\core\\profile");
             }
             Thread.Sleep(2000);
-            NewMethod9(d, c, a);
+            if (Directory.Exists(instDir[b]))
+            {
+                Directory.Delete(instDir[b], true);
+            }
+            Thread.Sleep(2000);
+            NewMethod9(a, b, c);
         }
-        private void NewMethod5(int d)
+        private void NewMethod5(int b)
         {
             IWshRuntimeLibrary.WshShell shell = new IWshRuntimeLibrary.WshShell();
-            IWshRuntimeLibrary.IWshShortcut link = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(deskDir + "\\" + instDir[d] + ".lnk");
-            link.IconLocation = applicationPath + "\\" + instDir[d] + "\\Thunderbird.exe,0";
+            IWshRuntimeLibrary.IWshShortcut link = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(deskDir + "\\" + instDir[b] + ".lnk");
+            link.IconLocation = applicationPath + "\\" + instDir[b] + "\\thunderbird.exe,0";
             link.WorkingDirectory = applicationPath;
-            link.TargetPath = applicationPath + "\\" + instDir[d] + " Launcher.exe";
+            link.TargetPath = applicationPath + "\\" + instDir[b] + " Launcher.exe";
             link.Save();
         }
         private void NewMethod6(string[] instVersion, int a, int b, int c)
@@ -644,21 +663,22 @@ namespace Thunderbird_Updater
             if ((instVersion[1] == ring2[a]) && (instVersion[2] == arch))
             {
                 toolTip.SetToolTip(button, instVersion[0]);
+                toolTip.IsBalloon = true;
             }
             else
             {
                 toolTip.SetToolTip(button, String.Empty);
             }
         }
-        private void NewMethod9(int d, int c, int a)
+        private void NewMethod9(int a, int b, int c)
         {
-            Directory.Move(@"Update\" + entpDir[d] + "\\core", instDir[d]);
-            if (!Directory.Exists(instDir[d] + "\\updates"))
+            Directory.Move(@"Update\" + entpDir[b] + "\\core", instDir[b]);
+            if (!Directory.Exists(instDir[b] + "\\updates"))
             {
-                Directory.CreateDirectory(instDir[d] + "\\updates");
+                Directory.CreateDirectory(instDir[b] + "\\updates");
             }
-            File.WriteAllText(instDir[d] + "\\updates\\Version.log", buildversion[c] + "|" + ring2[c] + "|" + architektur[a]);
-            Directory.Delete(@"Update\" + entpDir[d], true);
+            File.WriteAllText(instDir[b] + "\\updates\\Version.log", buildversion[c] + "|" + ring2[c] + "|" + architektur[a]);
+            Directory.Delete(@"Update\" + entpDir[b], true);
             if (checkBox3.Checked)
             {
                 CheckButton();
@@ -666,6 +686,129 @@ namespace Thunderbird_Updater
             else if (!checkBox3.Checked)
             {
                 CheckButton2();
+            }
+        }
+        private void CheckUpdate()
+        {
+            GroupBox groupBoxupdate = new GroupBox
+            {
+                Location = new Point(groupBox3.Location.X, button12.Location.Y + button12.Size.Height + 5),
+                Size = new Size(groupBox3.Width, 90),
+                BackColor = Color.Aqua
+            };
+            Label versionLabel = new Label
+            {
+                AutoSize = false,
+                TextAlign = ContentAlignment.BottomCenter,
+                Dock = DockStyle.None,
+                Location = new Point(2, 30),
+                Size = new Size(groupBoxupdate.Width - 4, 25),
+            };
+            versionLabel.Font = new Font(versionLabel.Font.Name, 10F, FontStyle.Bold);
+            Label infoLabel = new Label
+            {
+                AutoSize = false,
+                TextAlign = ContentAlignment.BottomCenter,
+                Dock = DockStyle.None,
+                Location = new Point(2, 10),
+                Size = new Size(groupBoxupdate.Width - 4, 20),
+                Text = "Eine neue Version ist verfügbar"
+            };
+            infoLabel.Font = new Font(infoLabel.Font.Name, 8.75F);
+            Label downLabel = new Label
+            {
+                TextAlign = ContentAlignment.MiddleRight,
+                AutoSize = false,
+                Size = new Size(100, 23),
+                Text = "Jetzt Updaten"
+            };
+            Button laterButton = new Button
+            {
+                Text = "Nein",
+                Size = new Size(40, 23),
+                BackColor = Color.FromArgb(224, 224, 224)
+            };
+            Button updateButton = new Button
+            {
+                Location = new Point(groupBoxupdate.Width - Width - 10, 60),
+                Text = "Ja",
+                Size = new Size(40, 23),
+                BackColor = Color.FromArgb(224, 224, 224)
+            };
+            updateButton.Location = new Point(groupBoxupdate.Width - updateButton.Width - 10, 60);
+            laterButton.Location = new Point(updateButton.Location.X - laterButton.Width - 5, 60);
+            downLabel.Location = new Point(laterButton.Location.X - downLabel.Width - 20, 60);
+            groupBoxupdate.Controls.Add(updateButton);
+            groupBoxupdate.Controls.Add(laterButton);
+            groupBoxupdate.Controls.Add(downLabel);
+            groupBoxupdate.Controls.Add(infoLabel);
+            groupBoxupdate.Controls.Add(versionLabel);
+            updateButton.Click += new EventHandler(UpdateButton_Click);
+            laterButton.Click += new EventHandler(LaterButton_Click);
+            if (culture1.Name != "de-DE")
+            {
+                infoLabel.Text = "A new version is available";
+                laterButton.Text = "No";
+                updateButton.Text = "Yes";
+                downLabel.Text = "Update now";
+            }
+            void LaterButton_Click(object sender, EventArgs e)
+            {
+                groupBoxupdate.Dispose();
+                Controls.Remove(groupBoxupdate);
+                groupBox3.Enabled = true;
+            }
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            try
+            {
+                var request = (WebRequest)HttpWebRequest.Create("https://github.com/UndertakerBen/PorThunderbirdUpd/raw/master/Version.txt");
+                var response = request.GetResponse();
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    var version = reader.ReadToEnd();
+                    versionLabel.Text = version;
+                    FileVersionInfo testm = FileVersionInfo.GetVersionInfo(applicationPath + "\\Portable Thunderbird Updater.exe");
+                    if (Convert.ToDecimal(version) > Convert.ToDecimal(testm.FileVersion))
+                    {
+                        Controls.Add(groupBoxupdate);
+                        groupBox3.Enabled = false;
+                    }
+                    reader.Close();
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            void UpdateButton_Click(object sender, EventArgs e)
+            {
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                var request2 = (WebRequest)HttpWebRequest.Create("https://github.com/UndertakerBen/PorThunderbirdUpd/raw/master/Version.txt");
+                var response2 = request2.GetResponse();
+                using (StreamReader reader = new StreamReader(response2.GetResponseStream()))
+                {
+                    var version = reader.ReadToEnd();
+                    reader.Close();
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                    using (WebClient myWebClient2 = new WebClient())
+                    {
+                        myWebClient2.DownloadFile($"https://github.com/UndertakerBen/PorThunderbirdUpd/releases/download/v{version}/Portable.Thunderbird.Updater.v{version}.7z", @"Portable.Thunderbird.Updater.v" + version + ".7z");
+                    }
+                    File.AppendAllText(@"Update.cmd", "@echo off" + "\n" +
+                        "timeout /t 1 /nobreak" + "\n" +
+                        "\"" + applicationPath + "\\Bin\\7zr.exe\" e \"" + applicationPath + "\\Portable.Thunderbird.Updater.v" + version + ".7z\" -o\"" + applicationPath + "\" \"Portable Thunderbird Updater.exe\"" + " -y\n" +
+                        "call cmd /c Start /b \"\" " + "\"" + applicationPath + "\\Portable Thunderbird Updater.exe\"\n" +
+                        "del /f /q \"" + applicationPath + "\\Portable.Thunderbird.Updater.v" + version + ".7z\"\n" +
+                        "del /f /q \"" + applicationPath + "\\Update.cmd\" && exit\n" +
+                        "exit\n");
+
+                    string arguments = " /c call Update.cmd";
+                    Process process = new Process();
+                    process.StartInfo.FileName = "cmd.exe";
+                    process.StartInfo.Arguments = arguments;
+                    process.Start();
+                    Close();
+                }
             }
         }
     }
