@@ -27,9 +27,17 @@ namespace Thunderbird_Launcher
                         string[] test = CommandLineArgs[i].Split(new char[] { '=' }, 2);
                         sb.Append(" " + test[0] + "=\"" + test[1] + "\"");
                     }
+                    else if (CommandLineArgs[i].Contains(".eml"))
+                    {
+                        sb.Append(" " + "\"" + CommandLineArgs[i] + "\"");
+                    }
+                    else if (CommandLineArgs[i].Contains(".wdseml"))
+                    {
+                        sb.Append(" " + "\"" + CommandLineArgs[i] + "\"");
+                    }
                     else
                     {
-                        sb.Append(" " + CommandLineArgs[i]);
+                        sb.Append(" " + CommandLineArgs[i] );
                     }
                 }
                 if (!File.Exists(applicationPath + "\\Thunderbird\\updates\\Profile.txt"))
@@ -39,7 +47,6 @@ namespace Thunderbird_Launcher
                     Application.SetCompatibleTextRenderingDefault(false);
                     Application.Run(new Form1());
                     String Arguments = File.ReadAllText(applicationPath + "\\Thunderbird\\updates\\Profile.txt") + sb.ToString();
-                    File.AppendAllText(applicationPath + "\\test.txt", Arguments + "\r\n");
                     if (Arguments.Contains("-profile \"Thunderbird"))
                     {
                         string[] Arguments2 = Arguments.Split(new char[] { '"' }, 3);
@@ -54,7 +61,6 @@ namespace Thunderbird_Launcher
                 else
                 {
                     String Arguments = File.ReadAllText(applicationPath + "\\Thunderbird\\updates\\Profile.txt") + sb.ToString();
-                    File.AppendAllText(applicationPath + "\\test.txt", Arguments + "\r\n");
                     if (File.Exists(applicationPath + "\\Thunderbird\\profile\\extensions.json"))
                     {
                         File.Delete(applicationPath + "\\Thunderbird\\profile\\extensions.json");

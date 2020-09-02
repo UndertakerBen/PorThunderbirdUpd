@@ -27,6 +27,14 @@ namespace Thunderbird_Beta_x86_Launcher
                         string[] test = CommandLineArgs[i].Split(new char[] { '=' }, 2);
                         sb.Append(" " + test[0] + "=\"" + test[1] + "\"");
                     }
+                    else if (CommandLineArgs[i].Contains(".eml"))
+                    {
+                        sb.Append(" " + "\"" + CommandLineArgs[i] + "\"");
+                    }
+                    else if (CommandLineArgs[i].Contains(".wdseml"))
+                    {
+                        sb.Append(" " + "\"" + CommandLineArgs[i] + "\"");
+                    }
                     else
                     {
                         sb.Append(" " + CommandLineArgs[i]);
