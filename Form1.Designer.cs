@@ -49,8 +49,27 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.extrasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thunderbirdAlsStandardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registrierenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.entfernenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thunderbirdStableX86AlsStandardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registrierenToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.entfernenToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.thunderbirdStableX64AlsStandardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registrierenToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.entfernenToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.thunderbirdBetaX86AlsStandardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registrierenToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.entfernenToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.thunderbirdBetaX64AlsStandardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registrierenToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.entfernenToolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -159,7 +178,7 @@
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(242, 211);
+            this.button11.Location = new System.Drawing.Point(242, 236);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(106, 25);
             this.button11.TabIndex = 26;
@@ -170,7 +189,7 @@
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(273, 242);
+            this.button12.Location = new System.Drawing.Point(273, 267);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(75, 25);
             this.button12.TabIndex = 27;
@@ -203,7 +222,7 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(30, 215);
+            this.checkBox3.Location = new System.Drawing.Point(30, 240);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(207, 17);
             this.checkBox3.TabIndex = 23;
@@ -214,7 +233,7 @@
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(30, 238);
+            this.checkBox4.Location = new System.Drawing.Point(30, 263);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(155, 17);
             this.checkBox4.TabIndex = 24;
@@ -323,7 +342,7 @@
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.button3);
             this.groupBox3.Controls.Add(this.button2);
-            this.groupBox3.Location = new System.Drawing.Point(12, 12);
+            this.groupBox3.Location = new System.Drawing.Point(12, 37);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(351, 192);
             this.groupBox3.TabIndex = 30;
@@ -340,6 +359,161 @@
             this.checkBox5.Text = "Eine Verknüpfung auf dem Desktop erstellen";
             this.checkBox5.UseVisualStyleBackColor = true;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.Silver;
+            this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.extrasToolStripMenuItem,
+            this.infoToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(5, 5);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(363, 24);
+            this.menuStrip1.TabIndex = 31;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // extrasToolStripMenuItem
+            // 
+            this.extrasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thunderbirdAlsStandardToolStripMenuItem,
+            this.thunderbirdStableX86AlsStandardToolStripMenuItem,
+            this.thunderbirdStableX64AlsStandardToolStripMenuItem,
+            this.thunderbirdBetaX86AlsStandardToolStripMenuItem,
+            this.thunderbirdBetaX64AlsStandardToolStripMenuItem});
+            this.extrasToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.extrasToolStripMenuItem.Name = "extrasToolStripMenuItem";
+            this.extrasToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
+            this.extrasToolStripMenuItem.Text = "Extras";
+            this.extrasToolStripMenuItem.Click += new System.EventHandler(this.ExtrasToolStripMenuItem_Click);
+            // 
+            // thunderbirdAlsStandardToolStripMenuItem
+            // 
+            this.thunderbirdAlsStandardToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.registrierenToolStripMenuItem,
+            this.entfernenToolStripMenuItem});
+            this.thunderbirdAlsStandardToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.thunderbirdAlsStandardToolStripMenuItem.Name = "thunderbirdAlsStandardToolStripMenuItem";
+            this.thunderbirdAlsStandardToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            this.thunderbirdAlsStandardToolStripMenuItem.Text = "Thunderbird als Standard";
+            // 
+            // registrierenToolStripMenuItem
+            // 
+            this.registrierenToolStripMenuItem.Name = "registrierenToolStripMenuItem";
+            this.registrierenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.registrierenToolStripMenuItem.Text = "Registrieren";
+            this.registrierenToolStripMenuItem.Click += new System.EventHandler(this.RegistrierenToolStripMenuItem_Click);
+            // 
+            // entfernenToolStripMenuItem
+            // 
+            this.entfernenToolStripMenuItem.Name = "entfernenToolStripMenuItem";
+            this.entfernenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.entfernenToolStripMenuItem.Text = "Entfernen";
+            this.entfernenToolStripMenuItem.Click += new System.EventHandler(this.EntfernenToolStripMenuItem_Click);
+            // 
+            // thunderbirdStableX86AlsStandardToolStripMenuItem
+            // 
+            this.thunderbirdStableX86AlsStandardToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.registrierenToolStripMenuItem1,
+            this.entfernenToolStripMenuItem1});
+            this.thunderbirdStableX86AlsStandardToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.thunderbirdStableX86AlsStandardToolStripMenuItem.Name = "thunderbirdStableX86AlsStandardToolStripMenuItem";
+            this.thunderbirdStableX86AlsStandardToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            this.thunderbirdStableX86AlsStandardToolStripMenuItem.Text = "Thunderbird Stable x86 als Standard";
+            // 
+            // registrierenToolStripMenuItem1
+            // 
+            this.registrierenToolStripMenuItem1.Name = "registrierenToolStripMenuItem1";
+            this.registrierenToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.registrierenToolStripMenuItem1.Text = "Registrieren";
+            this.registrierenToolStripMenuItem1.Click += new System.EventHandler(this.RegistrierenToolStripMenuItem1_Click);
+            // 
+            // entfernenToolStripMenuItem1
+            // 
+            this.entfernenToolStripMenuItem1.Name = "entfernenToolStripMenuItem1";
+            this.entfernenToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.entfernenToolStripMenuItem1.Text = "Entfernen";
+            this.entfernenToolStripMenuItem1.Click += new System.EventHandler(this.EntfernenToolStripMenuItem1_Click);
+            // 
+            // thunderbirdStableX64AlsStandardToolStripMenuItem
+            // 
+            this.thunderbirdStableX64AlsStandardToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.registrierenToolStripMenuItem2,
+            this.entfernenToolStripMenuItem2});
+            this.thunderbirdStableX64AlsStandardToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.thunderbirdStableX64AlsStandardToolStripMenuItem.Name = "thunderbirdStableX64AlsStandardToolStripMenuItem";
+            this.thunderbirdStableX64AlsStandardToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            this.thunderbirdStableX64AlsStandardToolStripMenuItem.Text = "Thunderbird Stable x64 als Standard";
+            // 
+            // registrierenToolStripMenuItem2
+            // 
+            this.registrierenToolStripMenuItem2.Name = "registrierenToolStripMenuItem2";
+            this.registrierenToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.registrierenToolStripMenuItem2.Text = "Registrieren";
+            this.registrierenToolStripMenuItem2.Click += new System.EventHandler(this.RegistrierenToolStripMenuItem2_Click);
+            // 
+            // entfernenToolStripMenuItem2
+            // 
+            this.entfernenToolStripMenuItem2.Name = "entfernenToolStripMenuItem2";
+            this.entfernenToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.entfernenToolStripMenuItem2.Text = "Entfernen";
+            this.entfernenToolStripMenuItem2.Click += new System.EventHandler(this.EntfernenToolStripMenuItem2_Click);
+            // 
+            // thunderbirdBetaX86AlsStandardToolStripMenuItem
+            // 
+            this.thunderbirdBetaX86AlsStandardToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.registrierenToolStripMenuItem3,
+            this.entfernenToolStripMenuItem3});
+            this.thunderbirdBetaX86AlsStandardToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.thunderbirdBetaX86AlsStandardToolStripMenuItem.Name = "thunderbirdBetaX86AlsStandardToolStripMenuItem";
+            this.thunderbirdBetaX86AlsStandardToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            this.thunderbirdBetaX86AlsStandardToolStripMenuItem.Text = "Thunderbird Beta x86 als Standard";
+            // 
+            // registrierenToolStripMenuItem3
+            // 
+            this.registrierenToolStripMenuItem3.Name = "registrierenToolStripMenuItem3";
+            this.registrierenToolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.registrierenToolStripMenuItem3.Text = "Registrieren";
+            this.registrierenToolStripMenuItem3.Click += new System.EventHandler(this.RegistrierenToolStripMenuItem3_Click);
+            // 
+            // entfernenToolStripMenuItem3
+            // 
+            this.entfernenToolStripMenuItem3.Name = "entfernenToolStripMenuItem3";
+            this.entfernenToolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.entfernenToolStripMenuItem3.Text = "Entfernen";
+            this.entfernenToolStripMenuItem3.Click += new System.EventHandler(this.EntfernenToolStripMenuItem3_Click);
+            // 
+            // thunderbirdBetaX64AlsStandardToolStripMenuItem
+            // 
+            this.thunderbirdBetaX64AlsStandardToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.registrierenToolStripMenuItem4,
+            this.entfernenToolStripMenuItem4});
+            this.thunderbirdBetaX64AlsStandardToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.thunderbirdBetaX64AlsStandardToolStripMenuItem.Name = "thunderbirdBetaX64AlsStandardToolStripMenuItem";
+            this.thunderbirdBetaX64AlsStandardToolStripMenuItem.Size = new System.Drawing.Size(262, 22);
+            this.thunderbirdBetaX64AlsStandardToolStripMenuItem.Text = "Thunderbird Beta x64 als Standard";
+            // 
+            // registrierenToolStripMenuItem4
+            // 
+            this.registrierenToolStripMenuItem4.Name = "registrierenToolStripMenuItem4";
+            this.registrierenToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.registrierenToolStripMenuItem4.Text = "Registrieren";
+            this.registrierenToolStripMenuItem4.Click += new System.EventHandler(this.RegistrierenToolStripMenuItem4_Click);
+            // 
+            // entfernenToolStripMenuItem4
+            // 
+            this.entfernenToolStripMenuItem4.Name = "entfernenToolStripMenuItem4";
+            this.entfernenToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.entfernenToolStripMenuItem4.Text = "Entfernen";
+            this.entfernenToolStripMenuItem4.Click += new System.EventHandler(this.EntfernenToolStripMenuItem4_Click);
+            // 
+            // infoToolStripMenuItem
+            // 
+            this.infoToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
+            this.infoToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
+            this.infoToolStripMenuItem.Text = "Version Info";
+            this.infoToolStripMenuItem.Click += new System.EventHandler(this.InfoToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -347,13 +521,15 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.GhostWhite;
-            this.ClientSize = new System.Drawing.Size(373, 279);
+            this.ClientSize = new System.Drawing.Size(373, 377);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.checkBox3);
+            this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.Text = "Portable Thunderbird Updater";
@@ -362,6 +538,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -390,6 +568,24 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem extrasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thunderbirdAlsStandardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem registrierenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem entfernenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thunderbirdStableX86AlsStandardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem registrierenToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem entfernenToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem thunderbirdStableX64AlsStandardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem registrierenToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem entfernenToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem thunderbirdBetaX86AlsStandardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem registrierenToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem entfernenToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem thunderbirdBetaX64AlsStandardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem registrierenToolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem entfernenToolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
     }
 }
 

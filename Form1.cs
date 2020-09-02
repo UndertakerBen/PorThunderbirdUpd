@@ -56,6 +56,21 @@ namespace Thunderbird_Updater
                 checkBox3.Text = "Create a Folder for each version";
                 groupBox3.Text = "Select your desired language";
                 checkBox5.Text = "Create a shortcut on the desktop";
+                thunderbirdAlsStandardToolStripMenuItem.Text = "Thunderbird as default email client";
+                thunderbirdStableX86AlsStandardToolStripMenuItem.Text = "Thunderbird Stable x86 as default email client";
+                thunderbirdStableX64AlsStandardToolStripMenuItem.Text = "Thunderbird Stable x64 as default email client";
+                thunderbirdBetaX86AlsStandardToolStripMenuItem.Text = "Thunderbird Beta x86 as default email client";
+                thunderbirdBetaX64AlsStandardToolStripMenuItem.Text = "Thunderbird Beta x64 as default email client";
+                registrierenToolStripMenuItem.Text = "Register";
+                registrierenToolStripMenuItem1.Text = "Register";
+                registrierenToolStripMenuItem2.Text = "Register";
+                registrierenToolStripMenuItem3.Text = "Register";
+                registrierenToolStripMenuItem4.Text = "Register";
+                entfernenToolStripMenuItem.Text = "Remove";
+                entfernenToolStripMenuItem1.Text = "Remove";
+                entfernenToolStripMenuItem2.Text = "Remove";
+                entfernenToolStripMenuItem3.Text = "Remove";
+                entfernenToolStripMenuItem4.Text = "Remove";
                 comboBox1.SelectedIndex = 16;
             }
             if (IntPtr.Size != 8)
@@ -810,6 +825,213 @@ namespace Thunderbird_Updater
                     Close();
                 }
             }
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            try
+            {
+                var request = WebRequest.Create("https://github.com/UndertakerBen/PorThunderbirdUpd/raw/master/Launcher/Version.txt");
+                var response = request.GetResponse();
+                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+                {
+                    var version = reader.ReadToEnd();
+                    FileVersionInfo testm = FileVersionInfo.GetVersionInfo(applicationPath + "\\Bin\\Launcher\\Thunderbird Launcher.exe");
+                    if (Convert.ToInt32(version.Replace(".", "")) > Convert.ToInt32(testm.FileVersion.Replace(".", "")))
+                    {
+                        reader.Close();
+                        try
+                        {
+                            using (WebClient myWebClient2 = new WebClient())
+                            {
+                                myWebClient2.DownloadFile("https://github.com/UndertakerBen/PorThunderbirdUpd/raw/master/Launcher/Launcher.7z", @"Launcher.7z");
+                            }
+                            string arguments = " x " + @"Launcher.7z" + " -o" + @"Bin\\Launcher" + " -y";
+                            Process process = new Process();
+                            process.StartInfo.FileName = @"Bin\7zr.exe";
+                            process.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
+                            process.StartInfo.Arguments = arguments;
+                            process.Start();
+                            process.WaitForExit();
+                            File.Delete(@"Launcher.7z");
+                            foreach (string launcher in instDir)
+                            {
+                                if (File.Exists(launcher + " Launcher.exe"))
+                                {
+                                    FileVersionInfo binLauncher = FileVersionInfo.GetVersionInfo(applicationPath + "\\Bin\\Launcher\\" + launcher + " Launcher.exe");
+                                    FileVersionInfo istLauncher = FileVersionInfo.GetVersionInfo(applicationPath + "\\" + launcher + " Launcher.exe");
+                                    if (Convert.ToDecimal(binLauncher.FileVersion) > Convert.ToDecimal(istLauncher.FileVersion))
+                                    {
+                                        File.Copy(@"bin\\Launcher\\" + launcher + " Launcher.exe", launcher + " Launcher.exe", true);
+                                    }
+                                }
+                            }
+                        }
+                        catch (Exception)
+                        {
+
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+        private void RegistrierenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Files.Regfile.RegCreate(applicationPath, instDir[4]);
+        }
+        private void RegistrierenToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Files.Regfile.RegCreate(applicationPath, instDir[1]);
+        }
+        private void RegistrierenToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Files.Regfile.RegCreate(applicationPath, instDir[3]);
+        }
+        private void RegistrierenToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            Files.Regfile.RegCreate(applicationPath, instDir[0]);
+        }
+        private void RegistrierenToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            Files.Regfile.RegCreate(applicationPath, instDir[2]);
+        }
+        private void EntfernenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            registrierenToolStripMenuItem.Enabled = true;
+            Files.Regfile.RegDel();
+        }
+        private void EntfernenToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            registrierenToolStripMenuItem1.Enabled = true;
+            Files.Regfile.RegDel();
+        }
+        private void EntfernenToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            registrierenToolStripMenuItem2.Enabled = true;
+            Files.Regfile.RegDel();
+        }
+        private void EntfernenToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            registrierenToolStripMenuItem3.Enabled = true;
+            Files.Regfile.RegDel();
+        }
+        private void EntfernenToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            registrierenToolStripMenuItem4.Enabled = true;
+            Files.Regfile.RegDel();
+        }
+        private void ExtrasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Microsoft.Win32.RegistryKey key;
+                if (Microsoft.Win32.Registry.GetValue("HKEY_Current_User\\Software\\Clients\\Mail\\Mozilla Thunderbird Portable", default, null) != null)
+                {
+                    key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("Software\\Clients\\Mail\\Mozilla Thunderbird Portable", false);
+                    switch (key.GetValue(default).ToString())
+                    {
+                        case "Mozilla Thunderbird Portable":
+                            key.Close();
+                            registrierenToolStripMenuItem.Enabled = false;
+                            thunderbirdAlsStandardToolStripMenuItem.Enabled = true;
+                            thunderbirdStableX86AlsStandardToolStripMenuItem.Enabled = false;
+                            thunderbirdStableX64AlsStandardToolStripMenuItem.Enabled = false;
+                            thunderbirdBetaX86AlsStandardToolStripMenuItem.Enabled = false;
+                            thunderbirdBetaX64AlsStandardToolStripMenuItem.Enabled = false;
+                            break;
+                        case "Mozilla Thunderbird Stable x86 Portable":
+                            key.Close();
+                            registrierenToolStripMenuItem1.Enabled = false;
+                            thunderbirdAlsStandardToolStripMenuItem.Enabled = false;
+                            thunderbirdStableX86AlsStandardToolStripMenuItem.Enabled = true;
+                            thunderbirdStableX64AlsStandardToolStripMenuItem.Enabled = false;
+                            thunderbirdBetaX86AlsStandardToolStripMenuItem.Enabled = false;
+                            thunderbirdBetaX64AlsStandardToolStripMenuItem.Enabled = false;
+                            break;
+                        case "Mozilla Thunderbird Stable x64 Portable":
+                            key.Close();
+                            registrierenToolStripMenuItem2.Enabled = false;
+                            thunderbirdAlsStandardToolStripMenuItem.Enabled = false;
+                            thunderbirdStableX86AlsStandardToolStripMenuItem.Enabled = false;
+                            thunderbirdStableX64AlsStandardToolStripMenuItem.Enabled = true;
+                            thunderbirdBetaX86AlsStandardToolStripMenuItem.Enabled = false;
+                            thunderbirdBetaX64AlsStandardToolStripMenuItem.Enabled = false;
+                            break;
+                        case "Mozilla Thunderbird Beta x86 Portable":
+                            key.Close();
+                            registrierenToolStripMenuItem3.Enabled = false;
+                            thunderbirdAlsStandardToolStripMenuItem.Enabled = false;
+                            thunderbirdStableX86AlsStandardToolStripMenuItem.Enabled = false;
+                            thunderbirdStableX64AlsStandardToolStripMenuItem.Enabled = false;
+                            thunderbirdBetaX86AlsStandardToolStripMenuItem.Enabled = true;
+                            thunderbirdBetaX64AlsStandardToolStripMenuItem.Enabled = false;
+                            break;
+                        case "Mozilla Thunderbird Beta x64 Portable":
+                            key.Close();
+                            registrierenToolStripMenuItem4.Enabled = false;
+                            thunderbirdAlsStandardToolStripMenuItem.Enabled = false;
+                            thunderbirdStableX86AlsStandardToolStripMenuItem.Enabled = false;
+                            thunderbirdStableX64AlsStandardToolStripMenuItem.Enabled = false;
+                            thunderbirdBetaX86AlsStandardToolStripMenuItem.Enabled = false;
+                            thunderbirdBetaX64AlsStandardToolStripMenuItem.Enabled = true;
+                            break;
+                    }
+                }
+                else
+                {
+                    if (Directory.Exists(@"Thunderbird"))
+                    {
+                        thunderbirdAlsStandardToolStripMenuItem.Enabled = true;
+                    }
+                    else
+                    {
+                        thunderbirdAlsStandardToolStripMenuItem.Enabled = false;
+                    }
+                    if (Directory.Exists(@"Thunderbird Stable x86"))
+                    {
+                        thunderbirdStableX86AlsStandardToolStripMenuItem.Enabled = true;
+                    }
+                    else
+                    {
+                        thunderbirdStableX86AlsStandardToolStripMenuItem.Enabled = false;
+                    }
+                    if (Directory.Exists(@"Thunderbird Stable x64"))
+                    {
+                        thunderbirdStableX64AlsStandardToolStripMenuItem.Enabled = true;
+                    }
+                    else
+                    {
+                        thunderbirdStableX64AlsStandardToolStripMenuItem.Enabled = false;
+                    }
+                    if (Directory.Exists(@"Thunderbird Beta x86"))
+                    {
+                        thunderbirdBetaX86AlsStandardToolStripMenuItem.Enabled = true;
+                    }
+                    else
+                    {
+                        thunderbirdBetaX86AlsStandardToolStripMenuItem.Enabled = false;
+                    }
+                    if (Directory.Exists(@"Thunderbird Beta x64"))
+                    {
+                        thunderbirdBetaX64AlsStandardToolStripMenuItem.Enabled = true;
+                    }
+                    else
+                    {
+                        thunderbirdBetaX64AlsStandardToolStripMenuItem.Enabled = false;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+        private void InfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileVersionInfo updVersion = FileVersionInfo.GetVersionInfo(applicationPath + "\\Portable Thunderbird Updater.exe");
+            FileVersionInfo launcherVersion = FileVersionInfo.GetVersionInfo(applicationPath + "\\Bin\\Launcher\\Thunderbird Launcher.exe");
+            MessageBox.Show("Updater Version - " + updVersion.FileVersion + "\nLauncher Version - " + launcherVersion.FileVersion, "Version Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

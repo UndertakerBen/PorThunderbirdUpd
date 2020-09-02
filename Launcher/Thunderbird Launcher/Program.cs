@@ -15,55 +15,100 @@ namespace Thunderbird_Launcher
         static void Main()
         {
             CultureInfo culture1 = CultureInfo.CurrentUICulture;
-            if (File.Exists(@"Thunderbird\Thunderbird.exe"))
+            string applicationPath = Application.StartupPath;
+            if (File.Exists(applicationPath + "\\Thunderbird\\Thunderbird.exe"))
             {
-                if (!File.Exists(@"Thunderbird\updates\Profile.txt"))
+                var sb = new System.Text.StringBuilder();
+                string[] CommandLineArgs = Environment.GetCommandLineArgs();
+                for (int i = 1; i < CommandLineArgs.Length; i++)
                 {
-                    if (culture1.Name == "de-DE")
+                    if (CommandLineArgs[i].Contains("="))
                     {
-                        Application.EnableVisualStyles();
-                        Application.SetCompatibleTextRenderingDefault(false);
-                        Application.Run(new Form1());
-                        String Arguments = File.ReadAllText(@"Thunderbird\updates\Profile.txt");
-                        Process.Start(@"Thunderbird\Thunderbird.exe", Arguments);
+                        string[] test = CommandLineArgs[i].Split(new char[] { '=' }, 2);
+                        sb.Append(" " + test[0] + "=\"" + test[1] + "\"");
                     }
                     else
                     {
-                        Application.EnableVisualStyles();
-                        Application.SetCompatibleTextRenderingDefault(false);
-                        Application.Run(new Form2());
-                        String Arguments = File.ReadAllText(@"Thunderbird\updates\Profile.txt");
-                        Process.Start(@"Thunderbird\Thunderbird.exe", Arguments);
+                        sb.Append(" " + CommandLineArgs[i]);
+                    }
+                }
+                if (!File.Exists(applicationPath + "\\Thunderbird\\updates\\Profile.txt"))
+                {
+
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new Form1());
+                    String Arguments = File.ReadAllText(applicationPath + "\\Thunderbird\\updates\\Profile.txt") + sb.ToString();
+                    File.AppendAllText(applicationPath + "\\test.txt", Arguments + "\r\n");
+                    if (Arguments.Contains("-profile \"Thunderbird"))
+                    {
+                        string[] Arguments2 = Arguments.Split(new char[] { '"' }, 3);
+                        string Arguments3 = Arguments2[0].Replace("-no-remote ", "") + "\"" + applicationPath + "\\" + Arguments2[1] + "\"" + Arguments2[2];
+                        Process.Start(applicationPath + "\\Thunderbird\\Thunderbird.exe", Arguments3);
+                    }
+                    else
+                    {
+                        Process.Start(applicationPath + "\\Thunderbird\\Thunderbird.exe", Arguments);
                     }
                 }
                 else
                 {
-                    String Arguments = File.ReadAllText(@"Thunderbird\updates\Profile.txt");
-                    if (File.Exists(@"Thunderbird\profile\extensions.json"))
+                    String Arguments = File.ReadAllText(applicationPath + "\\Thunderbird\\updates\\Profile.txt") + sb.ToString();
+                    File.AppendAllText(applicationPath + "\\test.txt", Arguments + "\r\n");
+                    if (File.Exists(applicationPath + "\\Thunderbird\\profile\\extensions.json"))
                     {
-                        File.Delete(@"Thunderbird\profile\extensions.json");
-                        Process.Start(@"Thunderbird\Thunderbird.exe", Arguments);
+                        File.Delete(applicationPath + "\\Thunderbird\\profile\\extensions.json");
+                        if (Arguments.Contains("-profile \"Thunderbird"))
+                        {
+                            string[] Arguments2 = Arguments.Split(new char[] { '"' }, 3);
+                            string Arguments3 = Arguments2[0].Replace("-no-remote ", "") + "\"" + applicationPath + "\\" + Arguments2[1] + "\"" + Arguments2[2];
+                            Process.Start(applicationPath + "\\Thunderbird\\Thunderbird.exe", Arguments3);
+                        }
+                        else
+                        {
+                            Process.Start(applicationPath + "\\Thunderbird\\Thunderbird.exe", Arguments);
+                        }
                     }
-                    else if (File.Exists(@"profile\extensions.json"))
+                    else if (File.Exists(applicationPath + "\\profile\\extensions.json"))
                     {
-                        File.Delete(@"profile\extensions.json");
-                        Process.Start(@"Thunderbird\Thunderbird.exe", Arguments);
+                        File.Delete(applicationPath + "\\profile\\extensions.json");
+                        if (Arguments.Contains("-profile \"Thunderbird"))
+                        {
+                            string[] Arguments2 = Arguments.Split(new char[] { '"' }, 3);
+                            string Arguments3 = Arguments2[0].Replace("-no-remote ", "") + "\"" + applicationPath + "\\" + Arguments2[1] + "\"" + Arguments2[2];
+                            Process.Start(applicationPath + "\\Thunderbird\\Thunderbird.exe", Arguments3);
+                        }
+                        else
+                        {
+                            Process.Start(applicationPath + "\\Thunderbird\\Thunderbird.exe", Arguments);
+                        }
                     }
                     else
                     {
-                        Process.Start(@"Thunderbird\Thunderbird.exe", Arguments);
+                        if (Arguments.Contains("-profile \"Thunderbird"))
+                        {
+                            string[] Arguments2 = Arguments.Split(new char[] { '"' }, 3);
+                            string Arguments3 = Arguments2[0].Replace("-no-remote ", "") + "\"" + applicationPath + "\\" + Arguments2[1] + "\"" + Arguments2[2];
+                            Process.Start(applicationPath + "\\Thunderbird\\Thunderbird.exe", Arguments3);
+                        }
+                        else
+                        {
+                            Process.Start(applicationPath + "\\Thunderbird\\Thunderbird.exe", Arguments);
+                        }
                     }
                 }
             }
-            else if (culture1.Name == "de-DE")
+            else if (culture1.TwoLetterISOLanguageName == "de")
             {
-                string message = "Thunderbird ist nicht installiert";
-                MessageBox.Show(message, "Thunderbird Launcher", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                 MessageBox.Show("Thunderbird ist nicht installiert", "Thunderbird Launcher", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (culture1.TwoLetterISOLanguageName == "ru")
+            {
+                MessageBox.Show("Mozilla Thunderbird не найден", "Thunderbird Launcher", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             else
             {
-                string message = "Thunderbird is not installed";
-                 MessageBox.Show(message, "Thunderbird Launcher", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Thunderbird is not installed", "Thunderbird Launcher", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
     }
