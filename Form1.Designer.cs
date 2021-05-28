@@ -253,7 +253,7 @@
             // 
             // comboBox1
             // 
-            this.comboBox1.DropDownHeight = 80;
+            this.comboBox1.DropDownHeight = 200;
             this.comboBox1.DropDownWidth = 250;
             this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboBox1.FormattingEnabled = true;
@@ -399,14 +399,14 @@
             // registrierenToolStripMenuItem
             // 
             this.registrierenToolStripMenuItem.Name = "registrierenToolStripMenuItem";
-            this.registrierenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.registrierenToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.registrierenToolStripMenuItem.Text = "Registrieren";
             this.registrierenToolStripMenuItem.Click += new System.EventHandler(this.RegistrierenToolStripMenuItem_Click);
             // 
             // entfernenToolStripMenuItem
             // 
             this.entfernenToolStripMenuItem.Name = "entfernenToolStripMenuItem";
-            this.entfernenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.entfernenToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.entfernenToolStripMenuItem.Text = "Entfernen";
             this.entfernenToolStripMenuItem.Click += new System.EventHandler(this.EntfernenToolStripMenuItem_Click);
             // 
@@ -423,14 +423,14 @@
             // registrierenToolStripMenuItem1
             // 
             this.registrierenToolStripMenuItem1.Name = "registrierenToolStripMenuItem1";
-            this.registrierenToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.registrierenToolStripMenuItem1.Size = new System.Drawing.Size(136, 22);
             this.registrierenToolStripMenuItem1.Text = "Registrieren";
             this.registrierenToolStripMenuItem1.Click += new System.EventHandler(this.RegistrierenToolStripMenuItem1_Click);
             // 
             // entfernenToolStripMenuItem1
             // 
             this.entfernenToolStripMenuItem1.Name = "entfernenToolStripMenuItem1";
-            this.entfernenToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.entfernenToolStripMenuItem1.Size = new System.Drawing.Size(136, 22);
             this.entfernenToolStripMenuItem1.Text = "Entfernen";
             this.entfernenToolStripMenuItem1.Click += new System.EventHandler(this.EntfernenToolStripMenuItem1_Click);
             // 
@@ -447,14 +447,14 @@
             // registrierenToolStripMenuItem2
             // 
             this.registrierenToolStripMenuItem2.Name = "registrierenToolStripMenuItem2";
-            this.registrierenToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.registrierenToolStripMenuItem2.Size = new System.Drawing.Size(136, 22);
             this.registrierenToolStripMenuItem2.Text = "Registrieren";
             this.registrierenToolStripMenuItem2.Click += new System.EventHandler(this.RegistrierenToolStripMenuItem2_Click);
             // 
             // entfernenToolStripMenuItem2
             // 
             this.entfernenToolStripMenuItem2.Name = "entfernenToolStripMenuItem2";
-            this.entfernenToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.entfernenToolStripMenuItem2.Size = new System.Drawing.Size(136, 22);
             this.entfernenToolStripMenuItem2.Text = "Entfernen";
             this.entfernenToolStripMenuItem2.Click += new System.EventHandler(this.EntfernenToolStripMenuItem2_Click);
             // 
@@ -471,14 +471,14 @@
             // registrierenToolStripMenuItem3
             // 
             this.registrierenToolStripMenuItem3.Name = "registrierenToolStripMenuItem3";
-            this.registrierenToolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.registrierenToolStripMenuItem3.Size = new System.Drawing.Size(136, 22);
             this.registrierenToolStripMenuItem3.Text = "Registrieren";
             this.registrierenToolStripMenuItem3.Click += new System.EventHandler(this.RegistrierenToolStripMenuItem3_Click);
             // 
             // entfernenToolStripMenuItem3
             // 
             this.entfernenToolStripMenuItem3.Name = "entfernenToolStripMenuItem3";
-            this.entfernenToolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
+            this.entfernenToolStripMenuItem3.Size = new System.Drawing.Size(136, 22);
             this.entfernenToolStripMenuItem3.Text = "Entfernen";
             this.entfernenToolStripMenuItem3.Click += new System.EventHandler(this.EntfernenToolStripMenuItem3_Click);
             // 
@@ -495,14 +495,14 @@
             // registrierenToolStripMenuItem4
             // 
             this.registrierenToolStripMenuItem4.Name = "registrierenToolStripMenuItem4";
-            this.registrierenToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.registrierenToolStripMenuItem4.Size = new System.Drawing.Size(136, 22);
             this.registrierenToolStripMenuItem4.Text = "Registrieren";
             this.registrierenToolStripMenuItem4.Click += new System.EventHandler(this.RegistrierenToolStripMenuItem4_Click);
             // 
             // entfernenToolStripMenuItem4
             // 
             this.entfernenToolStripMenuItem4.Name = "entfernenToolStripMenuItem4";
-            this.entfernenToolStripMenuItem4.Size = new System.Drawing.Size(180, 22);
+            this.entfernenToolStripMenuItem4.Size = new System.Drawing.Size(136, 22);
             this.entfernenToolStripMenuItem4.Text = "Entfernen";
             this.entfernenToolStripMenuItem4.Click += new System.EventHandler(this.EntfernenToolStripMenuItem4_Click);
             // 
