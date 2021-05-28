@@ -345,7 +345,7 @@ namespace Thunderbird_Updater
                         (args.TotalBytesToReceive / 1024d / 1024d).ToString("0.00"));
                     percLabel.Text = args.ProgressPercentage.ToString() + "%";
                 };
-                myWebClient.DownloadFileCompleted += (o, args) =>
+                myWebClient.DownloadFileCompleted += async (o, args) =>
                 {
                     if (args.Cancelled == true)
                     {
@@ -368,16 +368,16 @@ namespace Thunderbird_Updater
                                 string[] instVersion = File.ReadAllText($"{applicationPath}\\{instDir[b]}\\updates\\Version.log").Split(new char[] { '|' });
                                 if (buildversion[c] != instVersion[0])
                                 {
-                                    NewMethod4(a, b, c);
+                                    await NewMethod4(a, b, c);
                                 }
                                 else if ((buildversion[c] == instVersion[0]) && (checkBox4.Checked))
                                 {
-                                    NewMethod4(a, b, c);
+                                    await NewMethod4(a, b, c);
                                 }
                             }
                             else if (!checkBox3.Checked)
                             {
-                                NewMethod4(a, b, c);
+                                await NewMethod4(a, b, c);
                             }
                         }
                         else
@@ -654,23 +654,31 @@ namespace Thunderbird_Updater
                 }
             }
         }
-        private void NewMethod4(int a, int b, int c)
+        private async Task NewMethod4(int a, int b, int c)
         {
-            if (Directory.Exists($"{applicationPath}\\{instDir[b]}\\updates"))
+            try
             {
-                Directory.Move($"{applicationPath}\\{instDir[b]}\\Updates", $"{applicationPath}\\Update\\{entpDir[b]}\\core\\updates");
+                if (Directory.Exists($"{applicationPath}\\{instDir[b]}\\updates"))
+                {
+                    Directory.Move($"{applicationPath}\\{instDir[b]}\\Updates", $"{applicationPath}\\Update\\{entpDir[b]}\\updates");
+                }
+                if (Directory.Exists($"{applicationPath}\\{instDir[b]}\\profile"))
+                {
+                    Directory.Move($"{applicationPath}\\{instDir[b]}\\profile", $"{applicationPath}\\Update\\{entpDir[b]}\\profile");
+                }
+                Thread.Sleep(2000);
+                if (Directory.Exists($"{applicationPath}\\{instDir[b]}"))
+                {
+                    Directory.Delete($"{applicationPath}\\{instDir[b]}", true);
+                }
+                Thread.Sleep(2000);
+                await Task.WhenAll();
+                NewMethod9(a, b, c);
             }
-            if (Directory.Exists($"{applicationPath}\\{instDir[b]}\\profile"))
+            catch (Exception ex)
             {
-                Directory.Move($"{applicationPath}\\{instDir[b]}\\profile", $"{applicationPath}\\Update\\{entpDir[b]}\\core\\profile");
+                MessageBox.Show("Error\r\n" + ex.Message);
             }
-            Thread.Sleep(2000);
-            if (Directory.Exists($"{applicationPath}\\{instDir[b]}"))
-            {
-                Directory.Delete($"{applicationPath}\\{instDir[b]}", true);
-            }
-            Thread.Sleep(2000);
-            NewMethod9(a, b, c);
         }
         private void NewMethod5(int b)
         {
@@ -767,7 +775,16 @@ namespace Thunderbird_Updater
         }
         private void NewMethod9(int a, int b, int c)
         {
+            Thread.Sleep(2000);
             Directory.Move($"{applicationPath}\\Update\\{entpDir[b]}\\core", $"{applicationPath}\\{instDir[b]}");
+            if (Directory.Exists($"{applicationPath}\\Update\\{entpDir[b]}\\updates"))
+            {
+                Directory.Move($"{applicationPath}\\Update\\{entpDir[b]}\\updates", $"{applicationPath}\\{instDir[b]}\\Updates");
+            }
+            if (Directory.Exists($"{applicationPath}\\Update\\{entpDir[b]}\\profile"))
+            {
+                Directory.Move($"{applicationPath}\\Update\\{entpDir[b]}\\profile", $"{applicationPath}\\{instDir[b]}\\profile");
+            }
             if (!Directory.Exists($"{applicationPath}\\{instDir[b]}\\updates"))
             {
                 Directory.CreateDirectory($"{applicationPath}\\{instDir[b]}\\updates");
